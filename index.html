@@ -18,8 +18,14 @@
             <ul v-for='film in films' class="film-card">
                 <li>Titolo: {{ film.title }}</li>
                 <li>Titolo in linga originale: {{ film.original_title }}</li>
-                <li>Lingua originale: {{ film.original_language }}</li>
-                <li>Voto: {{ film.vote_average}}</li>
+                <li v-if="flags.includes(film.original_language)">
+                    <img :src="'flag/' + film.original_language + '.png'" alt="">
+                </li>
+                <li v-else>Lingua originale: {{ film.original_language }}</li>
+                <li>
+                    Voto: {{ film.vote_average}}
+                    <i class="fas fa-star" v-for="vote in (Math.round(film.vote_average / 2))"></i><i class="far fa-star" v-for="vote in (maxVote - (Math.round(film.vote_average / 2)))"></i>
+                </li>
             </ul>
         </div>
 

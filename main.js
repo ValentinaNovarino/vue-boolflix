@@ -3,7 +3,8 @@ var app = new Vue ( {
     data: {
         films: [],
         query: "",
-        base: 5
+        maxVote: 5,
+        flags: ['de', 'it', 'fr', 'en', 'es']
     },
     methods: {
         search() {
@@ -15,7 +16,7 @@ var app = new Vue ( {
                 this.films = film.data.results;
                 // console.log(this.films);
                 this.films.forEach((film) => {
-                    film.vote_average = Math.round(film.vote_average / 2);
+                    Math.round(film.vote_average / 2);
                 });
                 this.query = "";
             });
