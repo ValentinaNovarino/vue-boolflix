@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Boolflix</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" charset="utf-8"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <div id="root">
+            <div class="search-bar">
+                <button @click="search" type="button" name="button"><i class="fas fa-search"></i>Search</button>
+                <input v-model="query" @keyup.enter="search" placeholder="Cerca un film" type="text" name="" value="">
+            </div>
+            <div v-for='film in films' class="film-card">
+                <p>Titolo: {{ film.title }}</p>
+                <p>Titolo in linga originale: {{ film.original_title }}</p>
+                <p>Lingua originale: {{ film.original_language }}</p>
+                <p>Voto: {{ film.vote_average}}</p>
+            </div>
+        </div>
+
+        <script src="main.js" charset="utf-8"></script>
+
+    </body>
+</html>
