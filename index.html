@@ -15,12 +15,12 @@
                 <button @click="search" type="button" name="button"><i class="fas fa-search"></i>Search</button>
                 <input v-model="query" @keyup.enter="search" placeholder="Cerca un film" type="text" name="" value="">
             </div>
-            <div v-for='film in films' class="film-card">
-                <p>Titolo: {{ film.title }}</p>
-                <p>Titolo in linga originale: {{ film.original_title }}</p>
-                <p>Lingua originale: {{ film.original_language }}</p>
-                <p>Voto: {{ film.vote_average}}</p>
-            </div>
+            <ul v-for='film in films' class="film-card">
+                <li>Titolo: {{ film.title }}</li>
+                <li>Titolo in linga originale: {{ film.original_title }}</li>
+                <li>Lingua originale: {{ film.original_language }}</li>
+                <li>Voto: {{ film.vote_average}}</li>
+            </ul>
         </div>
 
         <script src="main.js" charset="utf-8"></script>

@@ -11,3 +11,7 @@
 .film-card {
     margin: 30px;
 }
+
+ul {
+    list-style-type: none;
+}
