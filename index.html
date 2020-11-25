@@ -21,9 +21,9 @@
                 <h2 v-if="researchInProgress">Ricerca in corso</h2>
                 <h2 v-else-if="textResearch && films.length">Risultati ricerca per: {{ textResearch }}</h2>
                 <h3 v-else-if="textResearch"></h3>
-                <ul v-for='film in films' class="film-card">
-                    <li>Titolo: {{ film.title }}</li>
-                    <li>Titolo in linga originale: {{ film.original_title }}</li>
+                <ul v-for="(film, index) in films" class="film-card">
+                    <li>Titolo: {{ film.title ? film.title : film.name }}</li>
+                    <li>Titolo in linga originale: {{ film.original_title ? film.original_title : film.original_name }}</li>
                     <li v-if="flags.includes(film.original_language)" class="flag">
                         <img :src="'flag/' + film.original_language + '.png'" alt="">
                     </li>

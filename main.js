@@ -30,7 +30,7 @@ var app = new Vue ( {
                 // salvo la ricerca nella chiave
                 this.textResearch = this.query;
                 // chiamata per i film
-                axios.get(urlApiKey + 'search/movie', {params: {
+                axios.get((urlApiKey + 'search/movie'), {params: {
                     api_key: apiKey,
                     query: this.query}
                 })
@@ -47,19 +47,19 @@ var app = new Vue ( {
                     this.query = "";
                 });
                 // chiamata per le serie tv
-                axios.get(urlApiKey + 'search/tv',
+                axios.get((urlApiKey + 'search/tv'),
                 {params: {
-                    api_Key: apiKey,
+                    api_key: apiKey,
                     query: this.query}
                 })
                 .then((serie) => {
                     this.serie = serie.data.result;
                     // unisco l'array film e l'array serie in un unico array
                     this.allResults = this.films.concat(this.serie);
-                    // console.log(this.allResults);
                     // riporto la ricerca in corso su false
                     this.researchInProgress = false;
-                })
+                    console.log(this.allResults);
+                });
             }
         },
     }
