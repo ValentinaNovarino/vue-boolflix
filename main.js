@@ -37,10 +37,6 @@ var app = new Vue ( {
                 .then((film) => {
                     this.films = film.data.results;
                     // console.log(this.films);
-                    // ciclo array film e porto voto in base 5 senza modificare valore iniziale
-                    this.films.forEach((film) => {
-                        Math.round(film.vote_average / 2);
-                    });
                     // riporto la ricerca in corso su false
                     this.researchInProgress = false
                     // ripulisco input
@@ -53,8 +49,9 @@ var app = new Vue ( {
                     query: this.query}
                 })
                 .then((serie) => {
-                    this.serie = serie.data.result;
+                    this.serie = serie.data.results;
                     // unisco l'array film e l'array serie in un unico array
+                    this.allResults = [];
                     this.allResults = this.films.concat(this.serie);
                     // riporto la ricerca in corso su false
                     this.researchInProgress = false;

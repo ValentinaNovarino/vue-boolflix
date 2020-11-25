@@ -11,10 +11,17 @@
 }
 
 #root {
-    background-color: grey;
     min-height: 100vh;
-    padding: 30px;
+    background-color: grey;
+}
 
+header {
+    height: 60px;
+    padding: 10px;
+}
+
+.search-bar {
+    line-height: 40px;
 }
 
 .container {
@@ -36,6 +43,6 @@ ul {
 }
 
 .flag img {
-    width: 30px;
+    width: 20px;
     height: 20px;
 }
