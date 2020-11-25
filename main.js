@@ -4,6 +4,10 @@ const urlApiKey = 'https://api.themoviedb.org/3/';
 var app = new Vue ( {
     el: '#root',
     data: {
+        // array comune film e serie
+        allResults: [],
+        // array serie tv
+        serie: [],
         // array films
         films: [],
         // input di ricerca
@@ -42,6 +46,20 @@ var app = new Vue ( {
                     // ripulisco input
                     this.query = "";
                 });
+                // chiamata per le serie tv
+                axios.get(urlApiKey + 'search/tv',
+                {params: {
+                    api_Key: apiKey,
+                    query: this.query}
+                })
+                .then((serie) => {
+                    this.serie = serie.data.result;
+                    // unisco l'array film e l'array serie in un unico array
+                    this.allResults = this.films.concat(this.serie);
+                    // console.log(this.allResults);
+                    // riporto la ricerca in corso su false
+                    this.researchInProgress = false;
+                })
             }
         },
     }
