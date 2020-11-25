@@ -11,22 +11,29 @@
     <body>
 
         <div id="root">
-            <div class="search-bar">
-                <button @click="search" type="button" name="button"><i class="fas fa-search"></i>Search</button>
-                <input v-model="query" @keyup.enter="search" placeholder="Cerca un film" type="text" name="" value="">
+            <header>
+                <div class="search-bar">
+                    <button @click="search" type="button" name="button"><i class="fas fa-search"></i>Search</button>
+                    <input v-model="query" @keyup.enter="search" placeholder="Cerca un film" type="text" name="" value="">
+                </div>
+            </header>
+            <div class="container">
+                <h2 v-if="researchInProgress">Ricerca in corso</h2>
+                <h2 v-else-if="textResearch && films.length">Risultati ricerca per: {{ textResearch }}</h2>
+                <h3 v-else-if="textResearch"></h3>
+                <ul v-for='film in films' class="film-card">
+                    <li>Titolo: {{ film.title }}</li>
+                    <li>Titolo in linga originale: {{ film.original_title }}</li>
+                    <li v-if="flags.includes(film.original_language)" class="flag">
+                        <img :src="'flag/' + film.original_language + '.png'" alt="">
+                    </li>
+                    <li v-else>Lingua originale: {{ film.original_language }}</li>
+                    <li>
+                        Voto: {{ film.vote_average}}
+                        <i class="fas fa-star" v-for="vote in (Math.round(film.vote_average / 2))"></i><i class="far fa-star" v-for="vote in (maxVote - (Math.round(film.vote_average / 2)))"></i>
+                    </li>
+                </ul>
             </div>
-            <ul v-for='film in films' class="film-card">
-                <li>Titolo: {{ film.title }}</li>
-                <li>Titolo in linga originale: {{ film.original_title }}</li>
-                <li v-if="flags.includes(film.original_language)">
-                    <img :src="'flag/' + film.original_language + '.png'" alt="">
-                </li>
-                <li v-else>Lingua originale: {{ film.original_language }}</li>
-                <li>
-                    Voto: {{ film.vote_average}}
-                    <i class="fas fa-star" v-for="vote in (Math.round(film.vote_average / 2))"></i><i class="far fa-star" v-for="vote in (maxVote - (Math.round(film.vote_average / 2)))"></i>
-                </li>
-            </ul>
         </div>
 
         <script src="main.js" charset="utf-8"></script>
