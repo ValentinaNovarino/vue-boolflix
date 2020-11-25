@@ -1,3 +1,6 @@
+const apiKey = '5b23704b41ce9ad797a67a023b27566c';
+const urlApiKey = 'https://api.themoviedb.org/3/';
+
 var app = new Vue ( {
     el: '#root',
     data: {
@@ -23,8 +26,8 @@ var app = new Vue ( {
                 // salvo la ricerca nella chiave
                 this.textResearch = this.query;
                 // chiamata per i film
-                axios.get('https://api.themoviedb.org/3/search/movie', {params: {
-                    api_key: '5b23704b41ce9ad797a67a023b27566c',
+                axios.get(urlApiKey + 'search/movie', {params: {
+                    api_key: apiKey,
                     query: this.query}
                 })
                 .then((film) => {
@@ -34,7 +37,7 @@ var app = new Vue ( {
                     this.films.forEach((film) => {
                         Math.round(film.vote_average / 2);
                     });
-                    // riporto la ricerca in corso su false 
+                    // riporto la ricerca in corso su false
                     this.researchInProgress = false
                     // ripulisco input
                     this.query = "";
