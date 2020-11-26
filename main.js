@@ -21,7 +21,7 @@ var app = new Vue ( {
         // array bandiere disponibili
         flags: ['de', 'it', 'fr', 'en', 'es'],
         // chiave per url base
-        baseUrlTmdb: "https://image.tmdb.org/t/p/​",
+        baseUrlTmdb: "https://image.tmdb.org/t/p",
         // chiave per dimensione poster
         imgSize: "w342",
         // immagine per poster non trovato
