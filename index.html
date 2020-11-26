@@ -19,12 +19,24 @@
                     </div>
                     <div class="menu">
                         <ul>
-                            <li>Home</li>
-                            <li>Serie TV</li>
-                            <li>Film</li>
-                            <li>Originali</li>
-                            <li>Aggiunti di recente</li>
-                            <li>La mia lista</li>
+                            <li>
+                                <a href="#">Home</a>
+                            </li>
+                            <li>
+                                <a href="#">Serie TV</a>
+                            </li>
+                            <li>
+                                <a href="#">Film</a>
+                            </li>
+                            <li>
+                                <a href="#">Originali</a>
+                            </li>
+                            <li>
+                                <a href="#">Aggiunti di recente</a>
+                            </li>
+                            <li>
+                                <a href="#">La mia lista</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -40,23 +52,44 @@
                 <h3 v-else-if="textResearch">Nessun risultato travato</h3>
             </div>
             <div class="container">
-                <div class="film-card" v-for="(film, index) in films">
+                <div class="film-card" v-for="(film, index) in films" @mouseover="showInfo(index)" @mouseleave="indexActive = ''">
                     <ul>
-                        <li class="film-poster">
-                            <img v-if="film.poster_path" :src="baseUrlTmdb + imgSize + film.poster_path" alt="">
-                            <img class="img-not-found" v-else :src="posterNotFound" alt="">
-                        </li>
-                        <li>Titolo: {{ film.title ? film.title : film.name }}</li>
-                        <li>Titolo in linga originale: {{ film.original_title ? film.original_title : film.original_name }}</li>
-                        <li v-if="flags.includes(film.original_language)" class="flag">
-                            <img :src="'flag/' + film.original_language + '.png'" alt="">
-                        </li>
-                        <li v-else>Lingua originale: {{ film.original_language }}</li>
-                        <li v-if="film.vote_average > 0">
-                            Voto: {{ film.vote_average}}
-                            <i class="fas fa-star" v-for="vote in getVote(film.vote_average)"></i><i class="far fa-star" v-for="vote in (maxVote - getVote(film.vote_average))"></i>
-                        </li>
-                        <li v-else>Senza voto</li>
+                        <div class="poster" v-if="indexActive !== index">
+                            <li class="film-poster">
+                                <img v-if="film.poster_path" :src="baseUrlTmdb + imgSize + film.poster_path" alt="">
+                                <img class="img-not-found" v-else :src="posterNotFound" alt="">
+                            </li>
+                        </div>
+                        <div class="infos" v-else>
+                            <li>
+                                <strong>
+                                    Titolo:
+                                </strong>{{ film.title ? film.title : film.name }}
+                            </li>
+                            <li>
+                                <strong>
+                                    Titolo in linga originale:
+                                </strong> {{ film.original_title ? film.original_title : film.original_name }}</li>
+                            <li v-if="flags.includes(film.original_language)" class="flag">
+                                <img :src="'flag/' + film.original_language + '.png'" alt="">
+                            </li>
+                            <li v-else>
+                                <strong>
+                                    Lingua originale:
+                                </strong> {{ film.original_language }}</li>
+                            <li v-if="film.vote_average > 0">
+                                <strong>
+                                    Voto:
+                                </strong> {{ film.vote_average}}
+                                <i class="fas fa-star" v-for="vote in getVote(film.vote_average)"></i><i class="far fa-star" v-for="vote in (maxVote - getVote(film.vote_average))"></i>
+                            </li>
+                            <li v-else>Senza voto</li>
+                            <li>
+                                <strong>
+                                    Overview:
+                                </strong> {{ film.overview }}
+                            </li>
+                        </div>
                     </ul>
                 </div>
             </div>

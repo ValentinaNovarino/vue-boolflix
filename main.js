@@ -22,9 +22,8 @@ var app = new Vue ( {
         imgSize: "w342",
         // immagine per poster non trovato
         posterNotFound: "https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png",
-        // chiave per visializzare poster on hover
-        posterHide: false,
-        currentCard: false
+        // index contatto corrente
+        indexActive: ''
 
     },
     methods: {
@@ -68,13 +67,8 @@ var app = new Vue ( {
         getVote(vote) {
             return Math.round(vote / 2);
         },
-        showPoster() {
-            this.currentCard = false;
-            this.posterHide = false;
-        },
-        showInfo(filmIndex) {
-            this.currentCard = filmIndex;
-            this.posterHide = true;
+        showInfo(indexFilm) {
+            this.indexActive = indexFilm;
         }
     }
 })

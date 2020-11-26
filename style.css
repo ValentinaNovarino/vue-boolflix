@@ -46,12 +46,16 @@ header {
 .menu {
     float: left;
     padding: 0 30px;
-    color: white;
 }
 
 .menu li {
     display: inline-block;
     padding-right: 15px;
+}
+
+.menu li a {
+    color: white;
+    text-decoration: none;
 }
 
 .search-bar {
@@ -104,7 +108,7 @@ i.notifications {
 .research {
     max-width: 1170px;
     margin-top: 20px;
-    margin-left: 155px;
+    margin-left: 185px;
 }
 
 .film-card {
@@ -117,6 +121,10 @@ i.notifications {
 
 ul {
     list-style-type: none;
+}
+
+.film-card li {
+    margin: 10px;
 }
 
 .film-poster img {
@@ -133,4 +141,20 @@ img.img-not-found {
 .flag img {
     width: 20px;
     height: 20px;
+}
+
+.fas.fa-star, .far.fa-star {
+    color: yellow;
+}
+
+.blur {
+    opacity: 0.1;
+}
+
+.hide {
+    opacity: 0;
+}
+
+.show {
+    opacity: 1;
 }
