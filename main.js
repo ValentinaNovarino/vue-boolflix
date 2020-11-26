@@ -19,7 +19,14 @@ var app = new Vue ( {
         // voto massimo in base 5
         maxVote: 5,
         // array bandiere disponibili
-        flags: ['de', 'it', 'fr', 'en', 'es']
+        flags: ['de', 'it', 'fr', 'en', 'es'],
+        // chiave per url base
+        baseUrlTmdb: "https://image.tmdb.org/t/p/​",
+        // chiave per dimensione poster
+        imgSize: "w342",
+        // immagine per poster non trovato
+        posterNotFound: "https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png"
+
     },
     methods: {
         search() {
@@ -27,6 +34,8 @@ var app = new Vue ( {
             if (this.query.trim() != '') {
                 // porto la ricerca in corso su true
                 this.researchInProgress = true;
+                // svuoto arrai risultati comuni
+                this.allResults = [];
                 // salvo la ricerca nella chiave
                 this.textResearch = this.query;
                 // chiamata per i film
@@ -37,6 +46,8 @@ var app = new Vue ( {
                 .then((film) => {
                     this.films = film.data.results;
                     // console.log(this.films);
+                    // unisco l'array film e l'array serie in un unico array
+                    this.allResults = this.serie.concat(this.films);
                     // riporto la ricerca in corso su false
                     this.researchInProgress = false
                     // ripulisco input
@@ -51,7 +62,6 @@ var app = new Vue ( {
                 .then((serie) => {
                     this.serie = serie.data.results;
                     // unisco l'array film e l'array serie in un unico array
-                    this.allResults = [];
                     this.allResults = this.films.concat(this.serie);
                     // riporto la ricerca in corso su false
                     this.researchInProgress = false;
@@ -59,5 +69,8 @@ var app = new Vue ( {
                 });
             }
         },
+        getVote (vote) {
+            return Math.round(vote / 2);
+        }
     }
 })
