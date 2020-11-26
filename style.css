@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 .container::after {
     content: '';
     clear: both;
@@ -12,30 +16,103 @@
 
 #root {
     min-height: 100vh;
-    background-color: grey;
+    background-color: 	rgb(51, 51, 51);
 }
 
+/* HEADER */
 header {
-    height: 60px;
-    padding: 10px;
+    height: 80px;
+    padding: 0 30px;
+    background-color: black;
+}
+
+.header-right {
+    float: left;
+    height: 100%;
+    width: 60%;
+    line-height: 80px;
+}
+
+.logo {
+    float: left;
+}
+
+.logo h1 {
+    color: red;
+    text-transform: uppercase;
+    font-size: 40px;
+}
+
+.menu {
+    float: left;
+    padding: 0 30px;
+    color: white;
+}
+
+.menu li {
+    display: inline-block;
+    padding-right: 15px;
 }
 
 .search-bar {
-    line-height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    float: left;
+    height: 100%;
+    width: 40%;
+    padding: 15px 0;
 }
 
+.search-bar button {
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0 15px;
+    border: 1px solid red;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.search-bar input {
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0 15px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: white;
+    outline: none;
+}
+
+i.notifications {
+    color: white;
+    font-size: 20px;
+    line-height: 50px;
+}
+
+/* CONTAINER */
 .container {
     max-width: 1170px;
     margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.research {
+    max-width: 1170px;
+    margin-top: 20px;
+    margin-left: 155px;
 }
 
 .film-card {
-    height: 300px;
-    width: 200px;
-    margin: 20px;
+    height: 700px;
+    width: calc(324px + 20px + 2px);
+    margin: 20px 10px;
     padding: 10px;
     float: left;
-    border: 1px solid black;
 }
 
 ul {
@@ -44,6 +121,13 @@ ul {
 
 .film-poster img {
     width: 324px;
+    height: 500px;
+    margin-bottom: 20px;
+}
+
+img.img-not-found {
+    width: 324px;
+    height: 324px;
 }
 
 .flag img {

@@ -4,10 +4,6 @@ const urlApiKey = 'https://api.themoviedb.org/3/';
 var app = new Vue ( {
     el: '#root',
     data: {
-        // array comune film e serie
-        allResults: [],
-        // array serie tv
-        serie: [],
         // array films
         films: [],
         // input di ricerca
@@ -21,11 +17,14 @@ var app = new Vue ( {
         // array bandiere disponibili
         flags: ['de', 'it', 'fr', 'en', 'es'],
         // chiave per url base
-        baseUrlTmdb: "https://image.tmdb.org/t/p",
+        baseUrlTmdb: "https://image.tmdb.org/t/p/",
         // chiave per dimensione poster
         imgSize: "w342",
         // immagine per poster non trovato
-        posterNotFound: "https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png"
+        posterNotFound: "https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png",
+        // chiave per visializzare poster on hover
+        posterHide: false,
+        currentCard: false
 
     },
     methods: {
@@ -35,7 +34,7 @@ var app = new Vue ( {
                 // porto la ricerca in corso su true
                 this.researchInProgress = true;
                 // svuoto arrai risultati comuni
-                this.allResults = [];
+                this.films = [];
                 // salvo la ricerca nella chiave
                 this.textResearch = this.query;
                 // chiamata per i film
@@ -44,10 +43,8 @@ var app = new Vue ( {
                     query: this.query}
                 })
                 .then((film) => {
-                    this.films = film.data.results;
-                    // console.log(this.films);
-                    // unisco l'array film e l'array serie in un unico array
-                    this.allResults = this.serie.concat(this.films);
+                    // aggiungo all'array films i film
+                    this.films = this.films.concat(film.data.results);
                     // riporto la ricerca in corso su false
                     this.researchInProgress = false
                     // ripulisco input
@@ -60,17 +57,24 @@ var app = new Vue ( {
                     query: this.query}
                 })
                 .then((serie) => {
-                    this.serie = serie.data.results;
-                    // unisco l'array film e l'array serie in un unico array
-                    this.allResults = this.films.concat(this.serie);
+                    // aggiungo all'array films le serie tv
+                    this.films = this.films.concat(serie.data.results);
                     // riporto la ricerca in corso su false
                     this.researchInProgress = false;
-                    console.log(this.allResults);
+                    console.log(this.films);
                 });
             }
         },
-        getVote (vote) {
+        getVote(vote) {
             return Math.round(vote / 2);
+        },
+        showPoster() {
+            this.currentCard = false;
+            this.posterHide = false;
+        },
+        showInfo(filmIndex) {
+            this.currentCard = filmIndex;
+            this.posterHide = true;
         }
     }
 })

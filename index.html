@@ -6,38 +6,59 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" charset="utf-8"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
 
         <div id="root">
             <header>
+                <div class="header-right">
+                    <div class="logo">
+                        <h1>boolflix</h1>
+                    </div>
+                    <div class="menu">
+                        <ul>
+                            <li>Home</li>
+                            <li>Serie TV</li>
+                            <li>Film</li>
+                            <li>Originali</li>
+                            <li>Aggiunti di recente</li>
+                            <li>La mia lista</li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="search-bar">
-                    <button @click="search" type="button" name="button"><i class="fas fa-search"></i>Search</button>
+                    <button @click="search" type="button" name="button"><i class="fas fa-search"></i></button>
                     <input v-model="query" @keyup.enter="search" placeholder="Cerca un film" type="text" name="" value="">
+                    <i class="far fa-bell notifications"></i>
                 </div>
             </header>
-            <div class="container">
+            <div class="research">
                 <h2 v-if="researchInProgress">Ricerca in corso</h2>
-                <h2 v-else-if="textResearch && allResults.length">Risultati ricerca per: {{ textResearch }}</h2>
+                <h2 v-else-if="textResearch && films.length">Risultati ricerca per: {{ textResearch }}</h2>
                 <h3 v-else-if="textResearch">Nessun risultato travato</h3>
-                <ul v-for="(film, index) in allResults" class="film-card">
-                    <li class="film-poster">
-                        <img v-if="film.poster_path" :src="baseUrlTmdb + imgSize + film.poster_path" alt="">
-                        <img v-else :src="posterNotFound" alt="">
-                    </li>
-                    <li>Titolo: {{ film.title ? film.title : film.name }}</li>
-                    <li>Titolo in linga originale: {{ film.original_title ? film.original_title : film.original_name }}</li>
-                    <li v-if="flags.includes(film.original_language)" class="flag">
-                        <img :src="'flag/' + film.original_language + '.png'" alt="">
-                    </li>
-                    <li v-else>Lingua originale: {{ film.original_language }}</li>
-                    <li v-if="film.vote_average > 0">
-                        Voto: {{ film.vote_average}}
-                        <i class="fas fa-star" v-for="vote in getVote(film.vote_average)"></i><i class="far fa-star" v-for="vote in (maxVote - getVote(film.vote_average))"></i>
-                    </li>
-                    <li v-else>Senza voto</li>
-                </ul>
+            </div>
+            <div class="container">
+                <div class="film-card" v-for="(film, index) in films">
+                    <ul>
+                        <li class="film-poster">
+                            <img v-if="film.poster_path" :src="baseUrlTmdb + imgSize + film.poster_path" alt="">
+                            <img class="img-not-found" v-else :src="posterNotFound" alt="">
+                        </li>
+                        <li>Titolo: {{ film.title ? film.title : film.name }}</li>
+                        <li>Titolo in linga originale: {{ film.original_title ? film.original_title : film.original_name }}</li>
+                        <li v-if="flags.includes(film.original_language)" class="flag">
+                            <img :src="'flag/' + film.original_language + '.png'" alt="">
+                        </li>
+                        <li v-else>Lingua originale: {{ film.original_language }}</li>
+                        <li v-if="film.vote_average > 0">
+                            Voto: {{ film.vote_average}}
+                            <i class="fas fa-star" v-for="vote in getVote(film.vote_average)"></i><i class="far fa-star" v-for="vote in (maxVote - getVote(film.vote_average))"></i>
+                        </li>
+                        <li v-else>Senza voto</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
