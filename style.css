@@ -102,35 +102,58 @@ i.notifications {
     margin-bottom: 20px;
 }
 
-.film-card {
+.film-card-container {
     height: 500px;
     width: 324px;
     margin: 10px 10px;
     cursor: pointer;
     overflow-y: scroll;
+    perspective: 1000px;
 }
 
-.film-card::-webkit-scrollbar {
+.film-card-container::-webkit-scrollbar {
   display: none;
+}
+
+.film-card {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.film-card-container:hover .film-card {
+    transform: rotateY(180deg);
 }
 
 .film-card p {
     margin: 10px;
 }
 
-.poster {
+.poster, .infos {
+    position: absolute;
     width: 100%;
     height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .poster img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 .poster img.img-not-found {
     width: 324px;
     height: 324px;
+}
+
+.infos {
+    transform: rotateY(180deg);
+    background-color: black;
+    color: white;
 }
 
 .flag img {
