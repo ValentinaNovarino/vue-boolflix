@@ -30,7 +30,7 @@ var app = new Vue ( {
             if (this.query.trim() != '') {
                 // porto la ricerca in corso su true
                 this.researchInProgress = true;
-                // svuoto arrai risultati comuni
+                // svuoto array risultati comuni
                 this.films = [];
                 // salvo la ricerca nella chiave
                 this.textResearch = this.query;
