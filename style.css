@@ -154,6 +154,7 @@ i.notifications {
 .infos {
     transform: rotateY(180deg);
     background-color: black;
+    opacity: 0.6;
     color: white;
     overflow: auto;
 }
@@ -166,4 +167,24 @@ i.notifications {
 
 .fas.fa-star, .far.fa-star {
     color: yellow;
+}
+
+.hamburger-menu {
+    display: none;
+    margin-left: 20px;
+}
+
+.hamburger-menu a {
+    color: white;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 1100px) {
+    .menu {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: inline-block;
+    }
 }
