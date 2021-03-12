@@ -10,7 +10,11 @@ body {
 
 #root {
     min-height: 100vh;
-    background-color: rgb(26, 26, 26);
+    /* background-color: rgb(26, 26, 26); */
+    background-image: url('https://store-images.s-microsoft.com/image/apps.19703.9007199266246365.73e47f2a-59d9-4ab9-a337-947a9821644b.42888798-183a-4256-84f6-5c10020990b3?mode=scale&q=90&h=720&w=1280');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 /* HEADER */
@@ -28,12 +32,9 @@ header {
 
 .logo {
     float: left;
-}
-
-.logo h1 {
-    color: red;
-    text-transform: uppercase;
-    font-size: 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .menu {
